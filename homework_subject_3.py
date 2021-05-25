@@ -4,12 +4,15 @@
 #пользователя, предусмотреть обработку ситуации деления на ноль.
 
 def devision():
-    a = int(input("Введите числитель: "))
-    b = int(input("Введите знаменатель: "))
-    if b == 0:
-        return False
-    else:
+    try:
+        a = int(input("Введите числитель: "))
+        b = int(input("Введите знаменатель: "))
+    except ValueError:
+        return print("Введенные числа некорректны")   
+    try:
         return a/b
+    except ZeroDivisionError:
+        return print("Знаменатель не может быть равен нулю")
 
 #Проверяем, как работает функция:
 dev =  devision()
@@ -80,21 +83,25 @@ my_func(x=2, y=-2)
 #Если специальный символ введен после нескольких чисел, то вначале нужно добавить сумму этих чисел к полученной ранее сумме и
 #после этого завершить программу.
 
-def string_of_numbers():
-    numbers = input("Введите числа, разделенные пробелом: ")
-    numbers = numbers.split(" ")
-    int_numbers = []
-    for n in numbers:
-        if n.isdigit() == True:
-            int_numbers.append(int(n))
-    return sum(int_numbers)
+def all_of_sum():
+    numbers = 0
+    
+    def one_string_sum():
+        nonlocal numbers
+        numbers_temp = input("Введите числа, разделенные пробелом: ")
+        numbers_temp = numbers_temp.split(" ")
+        int_numbers_temp = []
+        for n in numbers_temp:
+            if n.isdigit() == True:
+                int_numbers_temp.append(int(n))
+        numbers = numbers + sum(int_numbers_temp)
+        return numbers
+    return one_string_sum
 
-
-a = string_of_numbers()
-print(a)
-b = string_of_numbers()
-print(int(a) + int(b))
-
+func = all_of_sum()
+print(func())
+print(func())
+print(func())
 
 #6. Реализовать функцию int_func(), принимающую слово из маленьких латинских букв и возвращающую его же, но с прописной первой
 #буквой. Например, print(int_func(‘text’)) -> Text.
