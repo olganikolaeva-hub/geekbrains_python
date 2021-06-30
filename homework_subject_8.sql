@@ -93,8 +93,11 @@ class Warehouse:
         self.cnt = cnt
         try:
             self.cnt = int(self.cnt)
+            self.price = int(self.price)     
         except ValueError:
             print("Неверный формат данных. Повторите ввод.")
+        if self.name.isdigit():
+            print("Введите название Оргтехники")
         
     def accept(self):
         cnt_all = int(self.cnt)*int(self.price)
