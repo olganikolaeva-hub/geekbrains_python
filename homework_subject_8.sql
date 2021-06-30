@@ -117,7 +117,7 @@ class Xerox(Warehouse):
         print("I am xeroxing")    
 
 #Проверка
-example_printer = Printer('Принтер_2010', 10000)
+example_printer = Printer('Принтер_2010', 10000, 4)
 example_printer.price
 
 example_printer.do()
